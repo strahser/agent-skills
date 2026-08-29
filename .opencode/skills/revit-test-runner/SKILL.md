@@ -103,6 +103,55 @@ dotnet test -c Release.R25 --verbosity normal
 dotnet run -c Release.R25 --project RevitTesting.csproj
 ```
 
+### Option 4: Run prebuilt executable directly (WORKAROUND for legacy Base.csproj + Newtonsoft)
+
+**Symptom:** `dotnet run -c Release.R24 --project SnapshotTool -- --treenode-filter "..."` fails at compile
+with hundreds of `CS0246: Не удалось найти тип или имя пространства имен "Newtonsoft"`
+in a **legacy non-SDK** project referenced by the test project (e.g. `Base\Base.csproj` with
+`<PackageReference Include="Newtonsoft.Json" Version="13.0.4"/>`).
+
+**Why:** `dotnet run` re-runs NuGet restore with its own props/configuration, regenerates
+`project.assets.json` and forces a full recompile of the legacy project — but package references
+are then not resolved for that project, so it fails. Direct `dotnet build <testproj.csproj> -c Release.RNN --no-restore`
+can succeed incrementally without touching the legacy project.
+
+**Workaround — skip `dotnet run` entirely and execute the already-built test runner:**
+
+```shell
+# build once (incremental — does not rebuild the broken legacy project)
+dotnet build SnapshotTool\SnapshotTool.csproj -c Release.R24 --no-restore
+
+# run the prebuilt test executable directly (an exe, even though the project is a test project)
+SnapshotTool\bin\Release.R24\SnapshotTool.exe --treenode-filter "/*/SnapshotTool/GeneralizedWallsTests/*"
+# or --list-tests to see what's available
+SnapshotTool\bin\Release.R24\SnapshotTool.exe --list-tests
+```
+
+Notes:
+- The runner is a real `.exe` (`OutputType=Exe`), so it can be started directly from `bin\<config>`.
+- Do **NOT** use `dotnet run` for filtered runs on repos with such legacy projects — it restores and breaks the build.
+- Results land in `bin\<config>\TestResults\` (`*-report.html`, TRX, etc.).
+
+### IMPORTANT: TUnit `--treenode-filter` syntax
+
+TUnit (Microsoft Testing Platform) does **NOT** understand VSTest `--filter "FullyQualifiedName~..."` — it is silently
+rejected and prints the MTP help, resulting in `Zero tests ran`. Use `--treenode-filter` instead:
+
+```
+/<Assembly>/<Namespace>/<Class name>/<Test name>
+```
+
+- `*` is a wildcard inside a single segment. `/**` matches any depth, but only at the end.
+- Examples:
+  - all tests in class `GeneralizedWallsTests` (namespace `SnapshotTool`, assembly also `SnapshotTool`):
+    `--treenode-filter "/*/SnapshotTool/GeneralizedWallsTests/*"`
+  - single test: `--treenode-filter "/*/SnapshotTool/GeneralizedWallsTests/Save_GeneralizedWalls_AsSeparateFile"`
+  - by test name: `--treenode-filter "/*/*/*/AcceptCookiesTest"`
+  - by property: `--treenode-filter "/*/*/*/*[Category=Smoke]"`, exclude `[Category!=Slow]`
+- A filter with too few segments silently matches **0 tests** (e.g. `"*/GeneralizedWallsTests/*"` is
+  *Assembly/Namespace/Class* — it will not match anything in practice). Always use at least 4 segments
+  or verify with `--list-tests`.
+
 ## CI/CD Integration
 
 ### GitHub Actions Example
