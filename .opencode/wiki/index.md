@@ -23,12 +23,15 @@
 - [Project Structure](project-structure.md) — структура репозиториев и рабочего пространства
 - [Dashboard и OpenContext](dashboard-opencontext.md) — локальный веб-дашборд, глобальная база знаний
 - [Django Task App](django-task-app.md) — планировщик задач (проект вне E:\ПлагиныРевит)
+- [Revit Installer (WixSharp)](revit-installer.md) — MSI perUser/perMachine, WixSharp, MajorUpgrade, чистая установка, WPF pack URI
+- [Инспекция PDF без GUI](pdf-inspect.md) — PyMuPDF рендер страниц в PNG → Read картинкой;
+  счётчик встроенных изображений (проверка «иконки попали в PDF»)
 
 ## Скилы
 
 Все скилы (Revit + конвейер dev-pipeline) — в `agent-skills\.opencode\skills\`:
 - Revit: revit-api, revit-testing, revit-test-fixtures, revit-test-runner, revit-3d-export,
-  revit-json-serialization, threejs-viewer, mcp-setup, revit-wiki, cloud-ai-bridge
+  revit-json-serialization, threejs-viewer, mcp-setup, revit-wiki, cloud-ai-bridge, revit-installer
 - Конвейер: pipeline-controller, pipeline-executor, pipeline-reviewer, pipeline-planner,
   pipeline-browser-bridge, pipeline-qwen-worker, pipeline-placement-expert, **pipeline-grill**
   (вопросы владельцу до работы: explore-first, Q-файлы + wait_answer, ASSUMPTION),
