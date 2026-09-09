@@ -29,13 +29,16 @@
 
 ## Скилы
 
-Все скилы (Revit + конвейер dev-pipeline) — в `agent-skills\.opencode\skills\`:
+Все скилы (Revit + конвейер dev-pipeline + парсинг РД) — в `agent-skills\.opencode\skills\`:
 - Revit: revit-api, revit-testing, revit-test-fixtures, revit-test-runner, revit-3d-export,
   revit-json-serialization, threejs-viewer, mcp-setup, revit-wiki, cloud-ai-bridge, revit-installer
 - Конвейер: pipeline-controller, pipeline-executor, pipeline-reviewer, pipeline-planner,
   pipeline-browser-bridge, pipeline-qwen-worker, pipeline-placement-expert, **pipeline-grill**
   (вопросы владельцу до работы: explore-first, Q-файлы + wait_answer, ASSUMPTION),
   planning-with-files, architect-review, software-architecture, solid-principles, knowledge-base
+- Парсинг РД: **pdf-spec-parsing** (PDF: текстовый слой → anchor-спеки → find_tables → vision;
+  проверка ВОР; слепые тесты моделей 2026-09-08), **dwg-text-parsing** (DWG/BimExtractor:
+  тексты да, spec-таблицы нет; СПДС/zombie)
 
 ## Быстрые ссылки
 
