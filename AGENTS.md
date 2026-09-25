@@ -7,7 +7,8 @@
 
 ## Структура
 
-- Скилы: `.opencode/skills/` — revit-api, revit-testing, revit-test-fixtures,
+- Скилы: `.opencode/skills/` — revit-api, revit-testing, revit-test-quality,
+  revit-test-fixtures,
   revit-test-runner, revit-3d-export, revit-json-serialization, threejs-viewer,
   mcp-setup, revit-wiki, cloud-ai-bridge + скилы конвейера (перенесены из dev-pipeline):
   pipeline-controller, pipeline-executor, pipeline-reviewer, pipeline-planner,

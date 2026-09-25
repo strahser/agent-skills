@@ -23,6 +23,7 @@ Local test execution using `AutomationServiceHandler` from `aps-automation-cshar
 - Writing tests — use `revit-testing`
 - Setting up test fixtures — use `revit-test-fixtures`
 - Creating UI elements — use `revit-ui`
+- Quality/acceptance criteria (is the test strong enough) — use `revit-test-quality`
 
 ## AutomationServiceHandler Setup
 

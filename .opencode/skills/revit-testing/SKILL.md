@@ -25,6 +25,7 @@ It applies to a project scaffolded from the `revit-tunit` template — with the 
 - Providing the document, service, or parameterized cases a test consumes — use `revit-test-fixtures`.
 - Scaffolding the test project itself — create it from the `revit-tunit` template.
 - The code under test never touches the Revit API — write a plain TUnit test with no `RevitApiTest` base and no executor.
+- Quality/acceptance criteria for the test (exact values, live-run proof, meaningfulness, fixtures, anti-brittleness, TestOutput hygiene) — use `revit-test-quality`.
 
 ## Workflow
 
