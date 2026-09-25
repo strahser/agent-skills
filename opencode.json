@@ -8,7 +8,7 @@
   },
   "references": {
     "agent-skills": {
-      "repository": "strahser/revit-skills",
+        "repository": "strahser/agent-skills",
       "branch": "main",
       "description": "Хаб знаний и библиотека навыков: общая вики .opencode/wiki/ (навигация + ссылки на локальные вики проектов), скилы Revit и конвейера (.opencode/skills/), cloud-ai-bridge, mcp-setup. Используй для контекста Revit-плагинов, 3D, конвейера dev-pipeline и агентской автоматизации."
     }
