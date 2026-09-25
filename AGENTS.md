@@ -19,7 +19,7 @@
   структура, дашборд) + **ссылки на локальные вики проектов**.
 - Локальные вики проектов (в каждом проекте): `<project>\.opencode\wiki\index.md` —
   HeatLossRevit2, MepBimServer, MepTaggingSolution, dev-pipeline, AHUCalculator.
-- Git: `main`, remote `https://github.com/strahser/revit-skills.git`. Перед работой: `git pull`.
+- Git: `main`, remote `https://github.com/strahser/agent-skills.git`. Перед работой: `git pull`.
 
 ## Как пополняется база знаний
 
