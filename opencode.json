@@ -34,28 +34,6 @@
     "reserved": 20000
   },
   "agent": {
-    "Commander": {
-      "model": "opencode/nemotron-3-ultra-free"
-    },
-    "Planner": {
-      "model": "opencode/nemotron-3-ultra-free"
-    },
-    "Worker": {
-      "model": "opencode/deepseek-v4-flash-free"
-    },
-    "Reviewer": {
-      "model": "opencode/big-pickle",
-      "permission": {
-        "edit": "deny",
-        "write": "deny",
-        "read": "allow",
-        "grep": "allow",
-        "glob": "allow",
-        "bash": "allow",
-        "question": "allow",
-        "webfetch": "allow"
-      }
-    },
     "revit-engineer": {
       "description": "Ты инженер-конструктор, эксперт по Revit API C#. Работаешь с геометрией, тепловыми расчетами, солидами, BooleanOperationsUtils. Используй Context7 для актуальных API docs. Для сложной геометрии и рассуждений — Nemotron 3 Ultra. Для анализа больших файлов — DeepSeek V4 Flash. Для мультимодальных задач (схемы + код) — MiMo-V2.5.",
       "prompt": "Ты revit-engineer — эксперт по Revit API C# и инженерной геометрии. Используй скилы revit-api, revit-testing, revit-3d-export при работе. Отвечай на русском. Для сложных геометрических рассуждений применяй sequential-thinking.",
@@ -159,24 +137,5 @@
         "MCP_PROFILE": "structural"
       }
     }
-  },
-  "plugin": [
-    [
-      "opencode-orchestrator",
-      {
-        "defaultConcurrency": 4,
-        "agentConcurrency": {
-          "commander": 1,
-          "planner": 4,
-          "worker": 4,
-          "reviewer": 4
-        },
-        "missionLoop": {
-          "ledger": true,
-          "markdownMemory": true,
-          "maxEvidenceEvents": 50
-        }
-      }
-    ]
-  ]
+  }
 }
