@@ -1,3 +1,7 @@
+---
+name: pipeline-grill
+description: "Grill dev-pipeline requirements clarifier (grill-me)"
+---
 # Скилл «Grill» — вопросы владельцу до работы (dev-pipeline)
 
 **description:** Grill-фаза исполнителя конвейера dev-pipeline: прежде чем править код, агент добивается общего понимания карточки/задачи — сначала изучая код и вики самостоятельно, затем задавая владельцу МИНИМУМ блокирующих вопросов через файлы Tasks\Вопросы с ожиданием ответа (agents/wait_answer.py). По мотивам grill-me / grill-me-checkpoint (github.com/RobMitt, EricTechPro). Use when executing a plan card or task A-NN and the постановка is ambiguous, or when asked to clarify requirements before coding.
