@@ -13,11 +13,13 @@
 | dev-pipeline | [`E:\ПлагиныРевит\dev-pipeline\.opencode\wiki\index.md`](../../../dev-pipeline/.opencode/wiki/index.md) | Конвейер задач: protocol/architecture/runbook, скилы конвейера |
 | AHUCalculator | [`E:\ПлагиныРевит\AHUCalculator\.opencode\wiki\index.md`](../../../AHUCalculator/.opencode/wiki/index.md) | Расчёт приточных установок (конвейерный проект) |
 | DwgParser | [`E:\ПлагиныРевит\DwgParser\.opencode\wiki\index.md`](../../../DwgParser/.opencode/wiki/index.md) | Парсинг DWG/DXF/PDF (BimExtractor, C#): таблицы спецификаций, PDF-блоки (table/text), кодировка cp1251, HTML-отчёты (АР/КЖ/КМ/ВК) |
-| DesignBase | [`E:\ПлагиныРевит\DesignBase\.opencode\wiki\index.md`](../../../DesignBase/.opencode/wiki/index.md) | RAG по проектной документации ВВ-17+М1: SQLite+FTS5 (30,434 chunks), DOCX/PDF/DWG→реестр листов/объектов, DWG title block detection, PDF text extraction, LLM-ответ с цитатами, golden-eval 8/8. ВЗУ ТСГ, Делаваль, Родин, **РД** (дедупликация) |
+| DesignBase | [`E:\ПлагиныРевит\DesignBase\.opencode\wiki\index.md`](../../../DesignBase/.opencode/wiki/index.md) | RAG по проектной документации ВВ-17+М1: SQLite+FTS5 (30,434 chunks), DOCX/PDF/DWG→реестр листов/объектов, DWG title block detection, PDF text extraction, LLM-ответ с цитатами, golden-eval 8/8. ВЗУ ТСГ, Делаваль, Родин, **РД** (дедупликация). 2026-09-25: инжест LLM-разборов АПС/ЭМ 5.17 (сырые md `data/raw/llm_parsed`, чанки kind=llm_parse/llm_spec, L1 check-rd их исключает) |
 
 ## Общие темы (здесь, в agent-skills)
 
 - [MCP Servers](mcp-servers.md) — документация MCP-серверов (opencode-browser, playwright, storage, …)
+- [MCP графа кода (C#)](mcp-code-graph.md) — `roslyn_graph` (67 инструментов) + `astgrep`:
+  установка в DSH, read/write-аудит настроек и полей-сирот, отброшенные кандидаты (Docker/Neo4j), грабли
 - [DeepSeek Harness](dsh-harness.md) — запуск харнесса (start-harness.ps1), общение через API, модели, скилы
 - [Agent Workflow](agent-workflow.md) — самоуправление: добавление скилов, обновление wiki, git push
 - [Project Structure](project-structure.md) — структура репозиториев и рабочего пространства
@@ -39,6 +41,10 @@
 - Парсинг РД: **pdf-spec-parsing** (PDF: текстовый слой → anchor-спеки → find_tables → vision;
   проверка ВОР; слепые тесты моделей 2026-09-08), **dwg-text-parsing** (DWG/BimExtractor:
   тексты да, spec-таблицы нет; СПДС/zombie)
+- Аудит/рефакторинг: **code-audit-graph** (поиск «ненужных цепочек» — живого, но вредного кода:
+  фолбэки вместо валидации, проглоченные отказы, мёртвые настройки, поля-сироты; метод —
+  матрица «решение владельца → код» + шаблонный grep + read/write-аудит графом + измерения;
+  read-only: отчёт + вопросы владельцу A/B/C)
 
 ## Быстрые ссылки
 

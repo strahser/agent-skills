@@ -1,5 +1,8 @@
 # MCP Servers
 
+> Браузерные и UI-серверы. **Анализ кода (граф C#)** — на отдельной странице:
+> [MCP графа кода](mcp-code-graph.md) (`roslyn_graph`, `astgrep`).
+
 ## opencode-browser
 
 Браузерная автоматизация на Playwright.

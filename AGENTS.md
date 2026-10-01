@@ -14,7 +14,10 @@
   pipeline-controller, pipeline-executor, pipeline-reviewer, pipeline-planner,
   pipeline-browser-bridge, pipeline-qwen-worker, pipeline-placement-expert,
   pipeline-grill (grill-фаза: вопросы владельцу через Tasks\Вопросы + wait_answer),
-  planning-with-files, architect-review, software-architecture, solid-principles, knowledge-base.
+  planning-with-files, architect-review, software-architecture, solid-principles, knowledge-base,
+  **code-audit-graph** (аудит «ненужных цепочек»: фолбэки вместо валидации, проглоченные отказы,
+  мёртвые настройки, поля-сироты; метод — матрица «решение владельца → код» + шаблонный grep +
+  read/write-аудит через MCP-граф; read-only: отчёт + вопросы владельцу A/B/C).
 - Wiki (общая): `.opencode/wiki/index.md` — навигация: общие темы (MCP, workflow,
   структура, дашборд) + **ссылки на локальные вики проектов**.
 - Локальные вики проектов (в каждом проекте): `<project>\.opencode\wiki\index.md` —

@@ -28,6 +28,7 @@
 | [software-architecture](skills/software-architecture/SKILL.md) | Clean Architecture/DDD паттерны |
 | [solid-principles](skills/solid-principles/SKILL.md) | SOLID-принципы для классов/модулей |
 | [knowledge-base](skills/knowledge-base/SKILL.md) | Правила пополнения базы знаний |
+| [code-audit-graph](skills/code-audit-graph/SKILL.md) | Аудит кода: «ненужные цепочки», матрица решений, read/write-аудит графом (read-only) |
 
 ## Wiki
 
@@ -35,6 +36,8 @@
 
 - [Project Structure](wiki/project-structure.md) — структура репозиториев
 - [MCP Servers](wiki/mcp-servers.md) — документация MCP
+- [MCP графа кода (C#)](wiki/mcp-code-graph.md) — `roslyn_graph` + `astgrep`: установка в DSH,
+  read/write-аудит, отброшенные кандидаты, грабли
 - Локальные вики проектов: HeatLossRevit2, MepBimServer, MepTaggingSolution, dev-pipeline, AHUCalculator
   (`<проект>\.opencode\wiki\index.md`)
 
