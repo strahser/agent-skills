@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/muse-spark-1.3-contributor-free",
+  "model": "opencode-go/deepseek-v4.1-flash",
   "small_model": "opencode/north-mini-code-free",
   "instructions": ["AGENTS.md", ".opencode/wiki/index.md"],
   "skills": {
@@ -14,14 +14,14 @@
     }
   },
   "permission": {
-    "question": "ask",
+    "question": "allow",
     "webfetch": "allow",
     "websearch": "allow",
     "todowrite": "allow",
     "read": "allow",
-    "edit": "ask",
-    "write": "ask",
-    "bash": "ask",
+    "edit": "allow",
+    "write": "allow",
+    "bash": "allow",
     "grep": "allow",
     "glob": "allow",
     "task": "allow",

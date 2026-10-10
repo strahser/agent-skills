@@ -13,6 +13,7 @@
 - [Agent Workflow](agent-workflow.md) — самоуправление: добавление скилов, обновление wiki, git push
 - [Orchestrator Guide](orchestrator-guide.md) — как пользоваться Revit Skills Orchestrator
 - [User Guide](user-guide.md) — полное руководство: развёртывание, использование, скилы, GitHub, БД, отслеживание промптов
+- [Telegram Remote](telegram-remote.md) — ссылка на проект OpencodeTelegram: управление opencode из Telegram
 
 ## Быстрые ссылки
 
