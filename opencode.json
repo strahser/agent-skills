@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/deepseek-v4.1-flash",
+  "model": "opencode/muse-spark-1.3-contributor-free",
   "small_model": "opencode/north-mini-code-free",
   "instructions": ["AGENTS.md", ".opencode/wiki/index.md"],
   "skills": {
@@ -139,8 +139,8 @@
     },
     "roslyn-graph": {
       "type": "local",
-      "command": ["C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe", "D:\\Projects\\HeatLossRevit4\\HeatLossRevit.sln"],
-      "cwd": "D:\\Projects\\HeatLossRevit4",
+      "command": ["C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe", "E:\\ПлагиныРевит\\HeatLossRevit4\\HeatLossRevit.sln"],
+      "cwd": "E:\\ПлагиныРевит\\HeatLossRevit4",
       "enabled": true,
       "timeout": 180000,
       "environment": {
@@ -150,7 +150,7 @@
     "ast-grep": {
       "type": "local",
       "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\dist\\index.js"],
-      "cwd": "D:\\Projects\\HeatLossRevit4",
+      "cwd": "E:\\ПлагиныРевит\\HeatLossRevit4",
       "enabled": true,
       "timeout": 60000,
       "environment": {
