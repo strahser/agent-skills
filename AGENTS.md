@@ -15,6 +15,9 @@
   pipeline-browser-bridge, pipeline-qwen-worker, pipeline-placement-expert,
   pipeline-grill (grill-фаза: вопросы владельцу через Tasks\Вопросы + wait_answer),
   planning-with-files, architect-review, software-architecture, solid-principles, knowledge-base,
+  **cad-agent-*** (6 скилов из cad-agent-mcp: getting-started, safe-write-workflow, check-drawing-health,
+  inspect-multilayout-dwg, extract-pipe-spec-sheet, bridge-write-ops-autocad) + **acc-core-headless-write**
+  (headless DWG-запись через AccCore),
   **code-audit-graph** (аудит «ненужных цепочек»: фолбэки вместо валидации, проглоченные отказы,
   мёртвые настройки, поля-сироты; метод — матрица «решение владельца → код» + шаблонный grep +
   read/write-аудит через MCP-граф; read-only: отчёт + вопросы владельцу A/B/C).
