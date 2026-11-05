@@ -1,6 +1,6 @@
 # План: насыщение RevitMcp плагина инструментами моделирования
 
-**Статус:** Фаза 1 реализована (коммиты `dc145fc`, `c516592`); Фаза 2 реализована (коммит `6dad1d3`); Фазы 3–5 — в плане.
+**Статус:** Фазы 1–5 реализованы. Ф1: `dc145fc`/`c516592`; Ф2: `6dad1d3`; Ф3–5: `9b833e0` (families & params, schedules on template, safety backup/dry_run/undo).
 **Репозиторий:** `d:\ПлагиныРевит\RevitMcp` (Revit 2024, net48, MCP bridge).
 **Дата:** 2026-11-03.
 **Связано:** `TASK-BIM-REVIT-CORE.md` (ядро RevitBimCore), `DwgParser/AccCore` (DWG-писатель).
