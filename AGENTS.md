@@ -12,6 +12,9 @@
   **revit-test-navigation** (блоки-фичи, `[Trait("block"/"canon")]`, GOLDENS-реестр пинов,
   карта `Tools/test_map.ps1`, безопасный перенос тестов),
   revit-test-runner, revit-3d-export, revit-json-serialization, threejs-viewer,
+  **revit-background-screenshots** (PNG модели фоновым Revit через `Document.ExportImage`:
+  3D-вид из `NewProjectDocument` создаётся в памяти, `up ⟂ forward`, `ExportRange.SetOfViews`;
+  визуальная приёмка ОМ без человека в UI),
   mcp-setup, revit-wiki, cloud-ai-bridge + скилы конвейера (перенесены из dev-pipeline):
   pipeline-controller, pipeline-executor, pipeline-reviewer, pipeline-planner,
   pipeline-browser-bridge, pipeline-qwen-worker, pipeline-placement-expert,
