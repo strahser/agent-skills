@@ -11,7 +11,9 @@
   revit-test-fixtures,
   **revit-test-navigation** (блоки-фичи, `[Trait("block"/"canon")]`, GOLDENS-реестр пинов,
   карта `Tools/test_map.ps1`, безопасный перенос тестов),
-  revit-test-runner, revit-3d-export, revit-json-serialization, threejs-viewer,
+  revit-test-runner, **project-hygiene** (после блока: удалить сессии/state, worktree/копии,
+  TestResults/TestOutput/артефакты; закрытые PROMPT/REPORT — в `_archive/`; чек-лист «конец блока»),
+  revit-3d-export, revit-json-serialization, threejs-viewer,
   **revit-background-screenshots** (PNG модели фоновым Revit через `Document.ExportImage`:
   3D-вид из `NewProjectDocument` создаётся в памяти, `up ⟂ forward`, `ExportRange.SetOfViews`;
   визуальная приёмка ОМ без человека в UI),

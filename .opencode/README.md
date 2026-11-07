@@ -10,6 +10,7 @@
 | [revit-testing](skills/revit-testing/SKILL.md) | Unit-тесты с Nice3point.TUnit.Revit |
 | [revit-test-fixtures](skills/revit-test-fixtures/SKILL.md) | Фикстуры, хуки, параметризованные тесты |
 | [revit-test-runner](skills/revit-test-runner/SKILL.md) | Автоматизация запуска тестов в Revit |
+| [project-hygiene](skills/project-hygiene/SKILL.md) | Гигиена: сессии, worktree/копии, артефакты тестов, структура планов |
 | [revit-3d-export](skills/revit-3d-export/SKILL.md) | Экспорт геометрии Revit для 3D-вьювера |
 | [revit-json-serialization](skills/revit-json-serialization/SKILL.md) | Сериализация Revit объектов в JSON |
 | [threejs-viewer](skills/threejs-viewer/SKILL.md) | Архитектура Three.js 3D вьювера |
