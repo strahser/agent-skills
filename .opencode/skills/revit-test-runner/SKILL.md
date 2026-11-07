@@ -198,12 +198,27 @@ about 4 s, **0 tests executed**.
 **Not the same** as the discovery-time error described in `revit-testing` (a constructor, field initializer
 or data source touched the Revit API). Here the failure is in the injector, before discovery bodies run.
 
-**Verified 07.11.2026 (HeatLossRevit4, Revit 2024, same built exe):**
+### Why it fails
 
-- passes from `D:\temp\...` and from the main repo path `D:\Projects\HeatLossRevit4\...`;
-- fails from `D:\Projects\HL4test`, `D:\Projects\HL4omtemplate`, `D:\Projects\HL4-omtemplate\...`
-  (a fresh worktree / working copy) — **regardless of path length** (a long `D:\temp\...` copy passes,
-  a shorter `D:\Projects\HL4test` fails).
+`Injector.InjectApplication()` starts Revit and **writes into the Revit process memory** to marshal the
+test host into it. When that write is refused by the OS/security policy, .NET surfaces
+`InvalidOperationException: Attempted to write protected memory`; the `BeforeTestSession` hook then fails,
+so TUnit marks **every test in the run** as failed at ~0 ms — no test body is ever executed.
+
+The same built exe proves it is not the test code and not the path length:
+
+| Run location (same exe) | Result |
+|---|---|
+| `D:\temp\hl4bin_old` (short) | runs |
+| `D:\temp\HL4-omtemplate-long-test-path-1234567890` (long) | runs |
+| `D:\Projects\HeatLossRevit4\...` (main repo, long) | runs |
+| `D:\Projects\HL4test` (short) | **injector fails** |
+| `D:\Projects\HL4omtemplate` (short) | **injector fails** |
+| `D:\Projects\HL4-omtemplate\...` (worktree) | **injector fails** |
+
+So the trigger is the **location** (most likely a path-based AV/security policy, e.g. a Defender folder
+exclusion for `D:\temp` and the main repo). `Get-MpPreference` needs an administrator to show the
+exclusion list — do not guess, verify on the machine.
 
 **Rule:** run live tests from a **short allowed root** such as `D:\temp\...`, not from a fresh
 worktree/copy under `D:\Projects\HL4-*`. The owner's recorded workaround is to keep temp files there too:
@@ -223,6 +238,17 @@ Push-Location $dst
 
 If the hook still fails, it is the environment (AV/security path policy), not the test code:
 report the exact error and do **not** weaken assertions to make it green.
+
+### Triage — why tests fail (check in this order)
+
+| Symptom | Where | Likely cause | What to do |
+|---|---|---|---|
+| **0 tests executed**, ~4 s, `BeforeTestSession` + `InjectApplication`, exit `-1073741819` | whole run | injector path/security (above) | copy `bin\Debug.R24` to `D:\temp`, rerun; check AV exclusions as admin |
+| `Attempted to write protected memory` at **discovery**, stack in a test ctor/data source | one class | Revit API touched at construction (field initializer, `[Arguments]` source, DI) | move the call to the test body / `[Before]` on the Revit thread — see `revit-testing` |
+| Tests fail **after** a previous run crashed; `Get-Process Revit` shows an instance | whole run | leftover Revit singleton from a failed eject | close/kill only the test instance, rerun |
+| JSON `JsonSerializationException` / `FileNotFoundException` on a fixture | one test | stale generated copy in `bin\...\TestData` shadows the tracked fixture (seen: `Snapshot_FullAR_1.3.json` 2.1 MB in bin vs 1.27 MB in git) | delete the bin `TestData` copy or clean/rebuild; rerun |
+| AV in `EjectApplication` / eject only under RU locale (`ModelingViewModelTests`) | specific class | known locale/environment (RU Revit) | do not "fix" the test; note it as environment |
+| Numbers differ (76↔80, 311↔105, …) | specific class | outdated pins after an owner-approved behavior change | re-pin deliberately, never by weakening asserts |
 
 ### Common Issues
 

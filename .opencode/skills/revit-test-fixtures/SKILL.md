@@ -167,6 +167,8 @@ public class ServiceTests : RevitApiTest
 | `[MethodDataSource]` on a constructor-dependent member | Use `[InstanceMethodDataSource]`. |
 | Opening the sample file in place | Copy it to a temporary path and open the copy. |
 | Failing when the samples folder is missing | Return an empty data set or call `Skip.Test(...)`. |
+| A fixture test fails with `JsonSerializationException` on a file that **is** tracked in git | A stale generated copy in `bin\...\TestData` shadows the tracked fixture (seen 07.11.2026: `Snapshot_FullAR_1.3.json` 2.1 MB in bin vs 1.27 MB in git). Delete the bin copy or do a clean rebuild; the test searches from the assembly directory upward and finds the bin copy first. |
+| **All** tests fail at ~0 ms with `BeforeTestSession … Attempted to write protected memory` | Not a fixture problem — the injector could not start Revit from this location. See `revit-test-runner` → "Known issue: Attempted to write protected memory before any test runs" (run from `D:\temp\...`). |
 
 ## References
 
