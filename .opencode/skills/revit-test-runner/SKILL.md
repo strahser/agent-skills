@@ -189,6 +189,41 @@ jobs:
 
 ## Debugging Tips
 
+### Known issue: `Attempted to write protected memory` **before** any test runs
+
+**Symptom:** `BeforeTestSessionException: BeforeTestSession hook failed: Attempted to write protected memory`
+inside `Nice3point.Revit.Injector.Injector.InjectApplication()`, exit `-1073741819 (0xC0000005)`,
+about 4 s, **0 tests executed**.
+
+**Not the same** as the discovery-time error described in `revit-testing` (a constructor, field initializer
+or data source touched the Revit API). Here the failure is in the injector, before discovery bodies run.
+
+**Verified 07.11.2026 (HeatLossRevit4, Revit 2024, same built exe):**
+
+- passes from `D:\temp\...` and from the main repo path `D:\Projects\HeatLossRevit4\...`;
+- fails from `D:\Projects\HL4test`, `D:\Projects\HL4omtemplate`, `D:\Projects\HL4-omtemplate\...`
+  (a fresh worktree / working copy) — **regardless of path length** (a long `D:\temp\...` copy passes,
+  a shorter `D:\Projects\HL4test` fails).
+
+**Rule:** run live tests from a **short allowed root** such as `D:\temp\...`, not from a fresh
+worktree/copy under `D:\Projects\HL4-*`. The owner's recorded workaround is to keep temp files there too:
+`$env:TEMP="D:\temp"; $env:TMP="D:\temp"` (`PROMPT-2026-11-01-om-unidentified-bg2-WORKER.md`).
+
+**Recipe:**
+
+```powershell
+Get-Process Revit -ErrorAction SilentlyContinue   # must be closed, no leftover instance
+$env:HL_TEST_SAVE_RVT="0"; $env:TEMP="D:\temp"; $env:TMP="D:\temp"
+$dst="D:\temp\hl4-live"
+New-Item -ItemType Directory $dst -Force | Out-Null
+Copy-Item "<repo>\DirectShapeSnapshot\Tests\bin\Debug.R24\*" $dst -Recurse -Force
+Push-Location $dst
+& "$dst\DirectShapeSnapshot.Tests.exe" --treenode-filter "/*/*/<TestClass>/*"
+```
+
+If the hook still fails, it is the environment (AV/security path policy), not the test code:
+report the exact error and do **not** weaken assertions to make it green.
+
 ### Common Issues
 
 1. **DLL locked by Revit** — Use different output folder (`bin\Debug2`)

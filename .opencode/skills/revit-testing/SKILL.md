@@ -81,6 +81,11 @@ Calling the Revit API during test discovery causes an InvalidOperationException:
 Discovery happens before Revit is injected and off its thread: TUnit constructs the test class, evaluates every data source, and resolves every dependency-injection service at discovery.
 No constructor, field initializer, data-source member, or injected service may touch the Revit API at construction — defer that work to the test body or a `[Before]` hook that runs on the Revit thread.
 
+> Do not confuse this with the **injector-time** failure: `BeforeTestSession` + `InjectApplication`,
+> exit `-1073741819`, 0 tests executed, same message but no test code involved. That one depends on
+> where the test exe is run from (fresh worktree `D:\Projects\HL4-*` fails, `D:\temp` passes) — see
+> `revit-test-runner`, section "Known issue: `Attempted to write protected memory` before any test runs".
+
 ### Step 3: Parameterize and supply fixtures
 
 Feed a small fixed set of primitive cases inline with `[Arguments]`; the test body builds the Revit objects.
