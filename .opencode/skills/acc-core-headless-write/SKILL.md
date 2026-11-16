@@ -81,5 +81,5 @@ run.bat --dry-run Plan.dwg Plan_fans.dwg BUILDFANS
 - 48 новых INSERT на слой `Вентиляторы_новые` (ACI 6), 72 старых DDF1200P сохранены.
 - Раскладка: X × 12, Y × 4 (18000..231000 × 6000..54000), ≥4400 мм, крепление к колоннам.
 - Легенда + нативная TABLE 9×3 на Лист1.
-- Карточка: `ProjectsPalns\M1\_current\2026-11-02_Korpus-Fans-Р1800.md`; итоговый DWG: `ProjectsPalns\M1\_artifacts\`.
+- Карточка: `ProjectsPalns\03-heating\M1\_current\2026-11-02_Korpus-Fans-Р1800.md`; итоговый DWG: `ProjectsPalns\03-heating\M1\_artifacts\`.
 - Рабочая папка: `d:\Проекты Симрус\M1\11 Работа\Страхов\2026\Коровник Вентиляторы\` (там же `run.bat`, `AcFanCmd.dll`, `Plan_current.dwg`).
