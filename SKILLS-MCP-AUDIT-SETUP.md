@@ -25,7 +25,7 @@
 
 ### `revit-mcp` — готов, ничего ставить не надо
 
-- Сервер: `D:\ПлагиныРевит\RevitMcp\mcp-server\server.py`, Python 3.12:
+- Сервер: `D:\ПлагиныРевит\_bim\RevitMcp\mcp-server\server.py`, Python 3.12:
   `C:\Users\Strakhov\AppData\Local\Programs\Python\Python312\python.exe`.
 - В `HeatLossRevit4/opencode.json` уже прописан (починено 09.10.2026: диск `D:`, Python312).
 
