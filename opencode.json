@@ -2,13 +2,18 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode/nemotron-3-ultra-free",
   "small_model": "opencode/north-mini-code-free",
-  "instructions": ["AGENTS.md", ".opencode/wiki/index.md"],
+  "instructions": [
+    "AGENTS.md",
+    ".opencode/wiki/index.md"
+  ],
   "skills": {
-    "paths": [".opencode/skills"]
+    "paths": [
+      ".opencode/skills"
+    ]
   },
   "references": {
     "agent-skills": {
-        "repository": "strahser/agent-skills",
+      "repository": "strahser/agent-skills",
       "branch": "main",
       "description": "Хаб знаний и библиотека навыков: общая вики .opencode/wiki/ (навигация + ссылки на локальные вики проектов), скилы Revit и конвейера (.opencode/skills/), cloud-ai-bridge, mcp-setup. Используй для контекста Revit-плагинов, 3D, конвейера dev-pipeline и агентской автоматизации."
     }
@@ -82,23 +87,38 @@
       "models": {
         "big-pickle": {
           "name": "big-pickle",
-          "limit": { "context": 200000, "output": 64000 }
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          }
         },
         "nemotron-3-ultra-free": {
           "name": "nemotron-3-ultra-free",
-          "limit": { "context": 1000000, "output": 128000 }
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
         },
         "deepseek-v4-flash-free": {
           "name": "deepseek-v4-flash-free",
-          "limit": { "context": 1000000, "output": 128000 }
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
         },
         "mimo-v2.5-free": {
           "name": "mimo-v2.5-free",
-          "limit": { "context": 1000000, "output": 128000 }
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
         },
         "north-mini-code-free": {
           "name": "north-mini-code-free",
-          "limit": { "context": 256000, "output": 64000 }
+          "limit": {
+            "context": 256000,
+            "output": 64000
+          }
         }
       }
     }
@@ -106,7 +126,10 @@
   "mcp": {
     "storage": {
       "type": "local",
-      "command": ["node", ".opencode/storage-mcp.mjs"],
+      "command": [
+        "node",
+        ".opencode/storage-mcp.mjs"
+      ],
       "enabled": true
     },
     "context7": {
@@ -119,32 +142,52 @@
     },
     "memory": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"
+      ],
       "enabled": true
     },
     "sequential-thinking": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"
+      ],
       "enabled": true
     },
     "pdf": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-pdf\\dist\\index.js"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-pdf\\dist\\index.js"
+      ],
       "enabled": true
     },
     "filesystem": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js", "D:\\Плагины Ревит\\HeatEnergyCalculator"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
+        "D:\\Плагины Ревит\\HeatEnergyCalculator"
+      ],
       "enabled": true
     },
     "git": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@liangshanli\\mcp-server-git\\start-server.js", "D:\\Плагины Ревит\\HeatEnergyCalculator"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@liangshanli\\mcp-server-git\\start-server.js",
+        "D:\\Плагины Ревит\\HeatEnergyCalculator"
+      ],
       "enabled": false
     },
     "playwright": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"
+      ],
       "enabled": true,
       "environment": {
         "PLAYWRIGHT_BROWSERS_PATH": "C:\\Users\\Strakhov\\AppData\\Local\\ms-playwright"
@@ -152,8 +195,11 @@
     },
     "revit-mcp": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@shuotao\\revit-mcp-server\\build\\index.js"],
-      "enabled": true,
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@shuotao\\revit-mcp-server\\build\\index.js"
+      ],
+      "enabled": false,
       "environment": {
         "REVIT_MCP_PORT": "8964",
         "MCP_PROFILE": "structural"
@@ -161,7 +207,10 @@
     },
     "roslyn-graph": {
       "type": "local",
-      "command": ["C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe", "D:\\Projects\\HeatLossRevit4\\HeatLossRevit.sln"],
+      "command": [
+        "C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe",
+        "D:\\Projects\\HeatLossRevit4\\HeatLossRevit.sln"
+      ],
       "cwd": "D:\\Projects\\HeatLossRevit4",
       "enabled": true,
       "timeout": 180000,
@@ -171,13 +220,26 @@
     },
     "ast-grep": {
       "type": "local",
-      "command": ["node", "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\dist\\index.js"],
+      "command": [
+        "node",
+        "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\dist\\index.js"
+      ],
       "cwd": "D:\\Projects\\HeatLossRevit4",
       "enabled": true,
       "timeout": 60000,
       "environment": {
         "AST_GREP_BIN": "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\node_modules\\@ast-grep\\cli\\ast-grep.exe"
       }
+    },
+    "dwgparser": {
+      "type": "local",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "D:\\ПлагиныРевит\\DwgParser\\mcp_server.py"
+      ],
+      "enabled": true
     }
   },
   "plugin": [
