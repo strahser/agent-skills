@@ -1,0 +1,145 @@
+# Подключение к Алисе для бизнеса через browse (проверено 16–17.11.2026)
+
+Это рабочая инструкция для агента в другом чате. Алиса тут **не MCP-сервер**:
+у `alice.yandex.ru` нет публичного MCP-эндпоинта. Подключаемся через expansion
+`browse` к реальному Edge пользователя, где уже сохранён логин бизнес-аккаунта.
+
+## 0. Проверка связи (обязательно перед работой)
+
+В MCP-инструментах `browse` используй **Code Mode** (`execute`), прямые вызовы
+недоступны. Сначала проверь релей:
+
+```js
+return await tools.browse.status({});
+```
+
+Нужно: `connected: true`, `pairingState: "connected"`, в `browsers` — Edge.
+Если `relay: stopped` / "not reachable", запусти из PowerShell **один раз**:
+
+```powershell
+browse session list        # релей стартует автоматически
+browse status              # проверка: Relay ..., Extension: connected
+```
+
+Не запускай `browse serve` вручную (это foreground-режим). Если расширение
+не подключено — проси пользователя открыть/подключить его, не повторяй вызовы.
+
+## 1. Открыть чат Алисы
+
+```js
+const t = await tools.browse.navigate({ url: 'https://alice.yandex.ru/' });
+return t;   // запомни t.tab — все дальнейшие вызовы требуют tab
+```
+
+Проверь аккаунт в сайдбаре: должно быть `strakhov.s@cimrus.com (Cimrus)` —
+это **бизнес-аккаунт**. Личный `ssg-81` из `C:\Users\Strakhov\Desktop\Yandex API.txt`
+не видит бизнес-Диск; не пытайся заменить один другим.
+
+## 2. Отправить задание
+
+```js
+const s = await tools.browse.snapshot({ tab: t.tab });  // массив строк; ref напр. e35
+await tools.browse.fill({ tab: t.tab, ref: 'e35', value: '<промпт>' });
+await tools.browse.click({ tab: t.tab, ref: 'e39' });   // кнопка «Отправить»
+```
+
+Если `fill` прошёл, но кнопка осталась `disabled` — повтори `click` через
+`selector: 'role=button[name="Отправить"]'`. Подтверждение: в тексте страницы
+появился твой промпт и блок «Алиса / Работаю над задачей».
+
+Читать ход работы:
+
+```js
+return await tools.browse.eval({ tab: t.tab, expression: 'document.body.innerText.slice(-1500)' });
+```
+
+`wait_for` с текстом (`tools.browse.wait_for({tab, text:'Готово', timeout:...})`)
+работает, но следи за дедлайнами: Алиса может думать 7–15 минут.
+
+## 3. Разрешения плагинов (главная ловушка)
+
+Алиса на каждое действие Диска спрашивает разрешение. В DOM это кнопки
+`title="Разрешить один раз"`. Разрешай **все**, циклом в одном `execute`:
+
+```js
+for (let i=0;i<20;i++) {
+  const loc = page.locator('button[title="Разрешить один раз"]'); }
+```
+
+В новом tab-based API (`tools.browse.*`) используй только инструменты с `tab`:
+
+```js
+const s = await tools.browse.snapshot({ tab: t.tab, interactive: true });
+// в s ищи строки с "Разрешить один раз" и бери их ref
+await tools.browse.click({ tab: t.tab, ref: '<ref кнопки>', force: true });
+await tools.browse.wait_for({ tab: t.tab, ms: 1000 });
+```
+
+Повторяй, пока карточек не останется. Если цикл прервался — **не думай, что
+задача завершена**: проверь `document.body.innerText` по признакам «Готово»
+или «Работаю над задачей». Карточки могут появляться новыми пачками (у нас было
+~25 разрешений на 8 файлов). Не нажимай «Запретить».
+
+## 4. Как Алиса сохраняет на Диск
+
+Промпт должен содержать:
+- точный путь папки (например `Проекты 2026/ПодготовкаНОК/нормы_догрузка_2026-11-17`);
+- имя файла `<код>.pdf` для каждого документа;
+- явный запрет на выдумывание: «если не найдено — напиши "не найдено" и причину, заглушек не создавай»;
+- требование таблицы: код | название | URL | файл | статус;
+- «проверь размеры файлов на Диске».
+
+Алиса сама определяет точные названия/редакции и часто находит ошибки в наших
+кодах (например `sp49_13330` оказался 2010 года, а `fz220` — на самом деле
+257-ФЗ). **Эти поправки принимай, но перепроверяй по тексту PDF.**
+
+## 5. Как забрать файлы обратно (проверенный путь)
+
+1. Открой папку на Диске в том же Edge:
+   `https://disk.360.yandex.ru/client/disk/` + URL-encoded путь с `/`.
+2. Для каждого файла: ПКМ по строке → «Скачать». Браузер кладёт файлы в
+   `C:\Users\Strakhov\Downloads` с корректными размерами и `%PDF-` в начале.
+3. Скопируй их на D (например `output/.../norms_from_disk_<дата>`), затем
+   **удали временные копии из Downloads** — пользователь запретил писать на C.
+
+НЕ используй для этого `digest` из ответа `models-v2`: он отдаёт зашифрованные
+~45 КБ вместо реального PDF. `file` в ответе отредактирован (заредктирован) релеем, а ckey в
+`POST /models-v2` меняется на каждый запрос — этот путь тупиковый.
+
+Проверка после копирования: `head == b'%PDF-'`, `pymupdf.open(p)` → число
+страниц и `get_text()`, чтобы убедиться, что есть машинный текст.
+
+## 6. Инжест в DesignBase (если задача — пополнить БД)
+
+- Сначала `python scripts/snapshot_db.py --note "..."`.
+- Зависимости и модель **только на D** (диск C не трогать):
+  ```powershell
+  $env:PYTHONPATH='D:\Tools\db-deps'
+  $env:HF_HOME='D:\Tools\huggingface'
+  $env:HUGGINGFACE_HUB_CACHE='D:\Tools\huggingface\hub'
+  $env:TRANSFORMERS_CACHE='D:\Tools\huggingface\hub'
+  $env:TEMP='D:\Temp'; $env:TMP='D:\Temp'
+  ```
+- Инжест через `ingest_norm` (`scripts/ingest_norm_text.py`), `split='article'`
+  для законов/кодексов, `split='section'` для СП/ГОСТ/методичек.
+- После записи: `python scripts/db_health_check.py --ro` и
+  `python scripts/reindex_chroma.py --worker --threads 2 --batch 32 --chunk N`
+  с теми же env. Ожидаемый итог: `chroma == count(chunks)`.
+
+## 7. Слепой тест НОК — важные правила
+
+- `KEY_answers.json`, `score*.json`, `wrong*.json`, `agent_answers*.json`,
+  `batch_*_answers.json` — эталоны и результаты; агент-испытуемый **не должен**
+  их читать. Только `BLIND_questions.json`.
+- Банк вопросов НОК **не должен храниться в БД**. 17.11.2026 мы нашли и удалили
+  4 документа `source_type='kb'` (602 чанка) — это заражает тест.
+- Можно пользоваться только `documents.section='NORM'`; если нормы нет —
+  `answer: []` и честная note, а не догадка.
+
+## 8. Закрытие
+
+```js
+await tools.browse.tabs({ action:'close', tab: t.tab });   // только свои табы
+```
+
+Не закрывай табы пользователя (lent: true).
