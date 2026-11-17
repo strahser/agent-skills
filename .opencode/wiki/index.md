@@ -55,3 +55,7 @@
 | Тестовый экспорт | `demo3D\ProjectExport_*.json` |
 | Навигация шапка | `ui\partials\site-header.html` |
 | Плагины opencode | `.opencode\plugins\` (html-tools, threejs-tools, revit-tools) |
+
+## Общие инструменты
+
+- [Алиса для бизнеса через browse](alice-browser-bridge.md) — подключение к Edge, отправка заданий, разрешения плагина Диска, забор файлов, инжест в DesignBase, правила слепого теста НОК.
