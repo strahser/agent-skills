@@ -29,7 +29,11 @@
   мёртвые настройки, поля-сироты; метод — матрица «решение владельца → код» + шаблонный grep +
   read/write-аудит через MCP-граф; read-only: отчёт + вопросы владельцу A/B/C).
 - Wiki (общая): `.opencode/wiki/index.md` — навигация: общие темы (MCP, workflow,
-  структура, дашборд) + **ссылки на локальные вики проектов**.
+  структура, дашборд) + **ссылки на локальные вики проектов**. Отдельно —
+  `yandex-disk-api.md` (аккаунты, OAuth, локальный инвентарь секретов) и
+  `alice-browser-bridge.md` (бизнес-Диск через browse). Секреты — только локально
+  (`D:\ПлагиныРевит\YaDiskDownloader\Yandex API.txt`, в `.gitignore`); в git —
+  только безопасная структура `YaDiskDownloader\docs\SECRETS-INVENTORY.md`.
 - Локальные вики проектов (в каждом проекте): `<project>\.opencode\wiki\index.md` —
   HeatLossRevit2, MepBimServer, MepTaggingSolution, dev-pipeline, AHUCalculator.
 - Git: `main`, remote `https://github.com/strahser/agent-skills.git`. Перед работой: `git pull`.
