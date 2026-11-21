@@ -8,7 +8,7 @@
   ],
   "skills": {
     "paths": [
-      ".opencode/skills"
+      "D:\\Projects\\05-platform\\revit-skills\\.opencode\\skills"
     ]
   },
   "references": {
@@ -128,7 +128,7 @@
       "type": "local",
       "command": [
         "node",
-        ".opencode/storage-mcp.mjs"
+        "D:\\Projects\\05-platform\\revit-skills\\.opencode\\storage-mcp.mjs"
       ],
       "enabled": true
     },
@@ -209,9 +209,9 @@
       "type": "local",
       "command": [
         "C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe",
-        "D:\\Projects\\HeatLossRevit4\\HeatLossRevit.sln"
+        "D:\\Projects\\03-heating\\HeatLossRevit4\\HeatLossRevit.sln"
       ],
-      "cwd": "D:\\Projects\\HeatLossRevit4",
+      "cwd": "D:\\Projects\\03-heating\\HeatLossRevit4",
       "enabled": true,
       "timeout": 180000,
       "environment": {
@@ -224,7 +224,7 @@
         "node",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\dist\\index.js"
       ],
-      "cwd": "D:\\Projects\\HeatLossRevit4",
+      "cwd": "D:\\Projects\\03-heating\\HeatLossRevit4",
       "enabled": true,
       "timeout": 60000,
       "environment": {
@@ -237,7 +237,7 @@
         "python",
         "-X",
         "utf8",
-        "D:\\ПлагиныРевит\\DwgParser\\mcp_server.py"
+        "D:\\Projects\\01-bim\\DwgParser\\mcp_server.py"
       ],
       "enabled": true
     }
