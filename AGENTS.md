@@ -17,7 +17,9 @@
   **revit-background-screenshots** (PNG модели фоновым Revit через `Document.ExportImage`:
   3D-вид из `NewProjectDocument` создаётся в памяти, `up ⟂ forward`, `ExportRange.SetOfViews`;
   визуальная приёмка ОМ без человека в UI),
-  mcp-setup, revit-wiki, cloud-ai-bridge + скилы конвейера (перенесены из dev-pipeline):
+  mcp-setup, revit-wiki, cloud-ai-bridge, **alice-browser-bridge** (Алиса AI для бизнеса через
+  MCP `browse` в Code Mode; НЕ путать с namespace `browser` и с LocalAssitent/Qwen)
+  + скилы конвейера (перенесены из dev-pipeline):
   pipeline-controller, pipeline-executor, pipeline-reviewer, pipeline-planner,
   pipeline-browser-bridge, pipeline-qwen-worker, pipeline-placement-expert,
   pipeline-grill (grill-фаза: вопросы владельцу через Tasks\Вопросы + wait_answer),
