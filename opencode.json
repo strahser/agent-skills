@@ -6,11 +6,9 @@
     "AGENTS.md",
     ".opencode/wiki/index.md"
   ],
-  "skills": {
-    "paths": [
-      "D:\\Projects\\05-platform\\revit-skills\\.opencode\\skills"
-    ]
-  },
+  "skills": [
+    "D:\\ПлагиныРевит\\agent-skills\\.opencode\\skills"
+  ],
   "references": {
     "agent-skills": {
       "repository": "strahser/agent-skills",
@@ -124,18 +122,17 @@
     }
   },
   "mcp": {
-    "storage": {
+    "servers": {
+      "storage": {
       "type": "local",
       "command": [
-        "node",
-        "D:\\Projects\\05-platform\\revit-skills\\.opencode\\storage-mcp.mjs"
-      ],
-      "enabled": true
+        "C:\\Program Files\\nodejs\\node.exe",
+        "D:\\ПлагиныРевит\\agent-skills\\.opencode\\storage-mcp.mjs"
+      ]
     },
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
-      "enabled": true,
       "headers": {
         "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       }
@@ -143,52 +140,47 @@
     "memory": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-memory\\dist\\index.js"
-      ],
-      "enabled": true
+      ]
     },
     "sequential-thinking": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-sequential-thinking\\dist\\index.js"
-      ],
-      "enabled": true
+      ]
     },
     "pdf": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-pdf\\dist\\index.js"
-      ],
-      "enabled": true
+      ]
     },
     "filesystem": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
-        "D:\\Плагины Ревит\\HeatEnergyCalculator"
-      ],
-      "enabled": true
+        "D:\\ПлагиныРевит\\HvacUtility\\_legacy\\HeatEnergyCalculator"
+      ]
     },
     "git": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@liangshanli\\mcp-server-git\\start-server.js",
-        "D:\\Плагины Ревит\\HeatEnergyCalculator"
+        "D:\\ПлагиныРевит\\HvacUtility\\_legacy\\HeatEnergyCalculator"
       ],
-      "enabled": false
+      "disabled": true
     },
     "playwright": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@playwright\\mcp\\cli.js"
       ],
-      "enabled": true,
       "environment": {
         "PLAYWRIGHT_BROWSERS_PATH": "C:\\Users\\Strakhov\\AppData\\Local\\ms-playwright"
       }
@@ -196,10 +188,10 @@
     "revit-mcp": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@shuotao\\revit-mcp-server\\build\\index.js"
       ],
-      "enabled": false,
+      "disabled": true,
       "environment": {
         "REVIT_MCP_PORT": "8964",
         "MCP_PROFILE": "structural"
@@ -209,11 +201,14 @@
       "type": "local",
       "command": [
         "C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe",
-        "D:\\Projects\\03-heating\\HeatLossRevit4\\HeatLossRevit.sln"
+        "D:\\ПлагиныРевит\\HvacUtility\\HeatLossRevit4\\HeatLossRevit.sln"
       ],
-      "cwd": "D:\\Projects\\03-heating\\HeatLossRevit4",
-      "enabled": true,
-      "timeout": 180000,
+      "cwd": "D:\\ПлагиныРевит\\HvacUtility\\HeatLossRevit4",
+      "timeout": {
+        "startup": 180000,
+        "catalog": 60000,
+        "execution": 3600000
+      },
       "environment": {
         "ROSLYN_CODELENS_OPEN_PROJECT_TIMEOUT_SECONDS": "600"
       }
@@ -221,12 +216,13 @@
     "ast-grep": {
       "type": "local",
       "command": [
-        "node",
+        "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\dist\\index.js"
       ],
-      "cwd": "D:\\Projects\\03-heating\\HeatLossRevit4",
-      "enabled": true,
-      "timeout": 60000,
+      "cwd": "D:\\ПлагиныРевит\\HvacUtility\\HeatLossRevit4",
+      "timeout": {
+        "startup": 60000
+      },
       "environment": {
         "AST_GREP_BIN": "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\node_modules\\@ast-grep\\cli\\ast-grep.exe"
       }
@@ -237,9 +233,9 @@
         "python",
         "-X",
         "utf8",
-        "D:\\Projects\\01-bim\\DwgParser\\mcp_server.py"
-      ],
-      "enabled": true
+        "D:\\ПлагиныРевит\\DwgParser\\mcp_server.py"
+      ]
+    }
     }
   },
   "plugin": [
