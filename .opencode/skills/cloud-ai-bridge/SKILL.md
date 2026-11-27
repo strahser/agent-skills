@@ -9,6 +9,8 @@ description: >
   решить за разумный объём контекста; когда нужен мощный ИИ (DeepSeek/Qwen) без ручного
   копирования файлов в браузер.
   DO NOT USE FOR: простые правки, которые локальный ассистент делает сам; ручной ввод в браузер.
+  Для уже открытой вкладки chat.qwen.ai через MCP browse relay в Code Mode (tools.browse.*)
+  используйте qwen-browser-bridge, а не LocalAssitent.
 license: MIT
 ---
 

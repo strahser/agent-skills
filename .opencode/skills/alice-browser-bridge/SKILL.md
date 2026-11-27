@@ -92,6 +92,8 @@ const t = await tools.browse.navigate({
 
 ## Связанные материалы
 
+- `qwen-browser-bridge` — тот же протокол MCP `browse` для открытой вкладки `chat.qwen.ai`.
+  Если в задаче Qwen «в открытом браузере», берите его, а не LocalAssitent/qwen_bridge.py.
 - Wiki репозитория: `.opencode/wiki/alice-browser-bridge.md` — подробный рабочий протокол,
   включая подтверждение бизнес-аккаунта и нюансы snapshot.
 - Инструкция для агента в DesignBase:

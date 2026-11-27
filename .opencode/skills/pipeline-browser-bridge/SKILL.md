@@ -1,6 +1,6 @@
 ---
 name: pipeline-browser-bridge
-description: 'Роль «Агент-3 — браузерный мост» конвейера dev-pipeline: отправка промптов в облачный ИИ (Qwen/DeepSeek через LocalAssitent, Edge порт 9222) и сохранение ответов. Use when a browser_task event arrives, a file appears in Tasks\Конвейер\Браузер\*.txt, or when asked to send/read messages to/from cloud AI. Only for dev-pipeline projects.'
+description: 'Роль «Агент-3 — браузерный мост» конвейера dev-pipeline: отправка промптов в облачный ИИ (Qwen/DeepSeek через LocalAssitent, Edge порт 9222) и сохранение ответов. Use when a browser_task event arrives, a file appears in Tasks\Конвейер\Браузер\*.txt, or when asked to send/read messages to/from cloud AI. Only for dev-pipeline projects. Для уже открытой вкладки chat.qwen.ai через MCP browse relay в Code Mode — qwen-browser-bridge.'
 ---
 
 # Агент-3: браузерный мост (pipeline-browser-bridge)
