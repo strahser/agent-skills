@@ -7,7 +7,7 @@
     ".opencode/wiki/index.md"
   ],
   "skills": [
-    "D:\\ПлагиныРевит\\agent-skills\\.opencode\\skills"
+    "D:\\ПлагиныРевит\\05-platform\\agent-skills\\.opencode\\skills"
   ],
   "references": {
     "agent-skills": {
@@ -127,7 +127,7 @@
       "type": "local",
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
-        "D:\\ПлагиныРевит\\agent-skills\\.opencode\\storage-mcp.mjs"
+        "D:\\ПлагиныРевит\\05-platform\\agent-skills\\.opencode\\storage-mcp.mjs"
       ]
     },
     "context7": {
@@ -163,7 +163,7 @@
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
-        "D:\\ПлагиныРевит\\HvacUtility\\_legacy\\HeatEnergyCalculator"
+        "D:\\ПлагиныРевит\\_legacy\\HeatEnergyCalculator"
       ]
     },
     "git": {
@@ -171,7 +171,7 @@
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\@liangshanli\\mcp-server-git\\start-server.js",
-        "D:\\ПлагиныРевит\\HvacUtility\\_legacy\\HeatEnergyCalculator"
+        "D:\\ПлагиныРевит\\_legacy\\HeatEnergyCalculator"
       ],
       "disabled": true
     },
@@ -201,9 +201,9 @@
       "type": "local",
       "command": [
         "C:\\Users\\Strakhov\\.dotnet\\tools\\roslyn-codelens-mcp.exe",
-        "D:\\ПлагиныРевит\\HvacUtility\\HeatLossRevit4\\HeatLossRevit.sln"
+        "D:\\ПлагиныРевит\\03-heating\\HeatLossRevit4\\HeatLossRevit.sln"
       ],
-      "cwd": "D:\\ПлагиныРевит\\HvacUtility\\HeatLossRevit4",
+      "cwd": "D:\\ПлагиныРевит\\03-heating\\HeatLossRevit4",
       "timeout": {
         "startup": 180000,
         "catalog": 60000,
@@ -219,7 +219,7 @@
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\Strakhov\\AppData\\Roaming\\npm\\node_modules\\ast-grep-mcp\\dist\\index.js"
       ],
-      "cwd": "D:\\ПлагиныРевит\\HvacUtility\\HeatLossRevit4",
+      "cwd": "D:\\ПлагиныРевит\\03-heating\\HeatLossRevit4",
       "timeout": {
         "startup": 60000
       },
@@ -233,7 +233,7 @@
         "python",
         "-X",
         "utf8",
-        "D:\\ПлагиныРевит\\DwgParser\\mcp_server.py"
+        "D:\\ПлагиныРевит\\01-bim\\DwgParser\\mcp_server.py"
       ]
     }
     }
